@@ -3,22 +3,19 @@ const { User } = require('../models/index');
 exports.login = async email => {
   try {
     const user = await User.findOne({
-      where: {
-        email,
-      }
+      where: { email }
     });
 
     if (!user) return;
 
     return user;
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 
 exports.signup = async userInfo => {
   const { email, uid, displayName, photoURL } = userInfo;
-
   try {
     const user = await User.create({
       uid,
@@ -29,6 +26,7 @@ exports.signup = async userInfo => {
 
     return user;
   } catch (error) {
-    throw new Error(error);
+    //toto throw error로 바꾸기
+    throw error;
   }
 };
