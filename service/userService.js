@@ -26,7 +26,6 @@ exports.signup = async userInfo => {
 
     return user;
   } catch (error) {
-    //toto throw error로 바꾸기
     throw error;
   }
 };
