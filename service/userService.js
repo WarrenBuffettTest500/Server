@@ -1,6 +1,6 @@
 const { User } = require('../models/index');
 
-exports.login = async email => {
+exports.findOne = async email => {
   try {
     const user = await User.findOne({
       where: { email }
@@ -14,7 +14,7 @@ exports.login = async email => {
   }
 };
 
-exports.signup = async userInfo => {
+exports.create = async userInfo => {
   const { email, uid, displayName, photoURL } = userInfo;
   try {
     const user = await User.create({
@@ -26,6 +26,7 @@ exports.signup = async userInfo => {
 
     return user;
   } catch (error) {
+
     throw error;
   }
 };
