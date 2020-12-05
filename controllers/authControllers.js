@@ -6,7 +6,7 @@ exports.generateToken = async (req, res, next) => {
   const { email } = req.body;
 
   try {
-    const user = await userService.findByEmail(email);
+    const user = await userService.findOne(email);
 
     if (!user) {
       res.status(200).json({ result: RESPONSE.FAILURE });
@@ -24,7 +24,7 @@ exports.registerUser = async (req, res, next) => {
   const userInfo = req.body;
 
   try {
-    const user = await userService.findByEmail(userInfo.email);
+    const user = await userService.findOne(userInfo.email);
 
     if (user) {
       const token = encode(user);
