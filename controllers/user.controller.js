@@ -7,7 +7,6 @@ exports.updateUserInfo = async (req, res, next) => {
 
   try {
     const updatedUser = await userService.updateUserPreferenceInfoId(userUid, preferenceInfoId);
-    console.log(updatedUser);
 
     res.status(200).json({
       result: RESPONSE.OK,
