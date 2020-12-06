@@ -9,6 +9,7 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 
 db.User = require('./User')(sequelize, Sequelize);
 db.PreferenceInfo = require('./PreferenceInfo')(sequelize, Sequelize);
+db.CompanyProfile = require('./CompanyProfile')(sequelize, Sequelize);
 
 db.User.hasOne(db.PreferenceInfo, {
   onDelete: 'cascade',

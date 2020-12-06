@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "1234",
-    "database": "buffettTest500",
+    "password": "dbsdk94",
+    "database": "warrenbuffetttest",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
