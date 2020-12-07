@@ -9,6 +9,8 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 
 db.User = require('./User')(sequelize, Sequelize);
 db.PreferenceInfo = require('./PreferenceInfo')(sequelize, Sequelize);
+db.CompanyProfile = require('./CompanyProfile')(sequelize, Sequelize);
+db.StockData = require('./StockData')(sequelize, Sequelize);
 
 db.User.hasOne(db.PreferenceInfo, {
   onDelete: 'cascade',
@@ -19,6 +21,12 @@ db.PreferenceInfo.belongsTo(db.User, {
     allowNull: true,
   }
 });
+
+db.User.hasMany(db.StockData, {
+  onDelete: 'cascade',
+});
+
+db.StockData.belongsTo(db.User);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

@@ -1,4 +1,4 @@
-const RESPONSE = require('../constants/response');
+const RESPONSE = require('../constants/responses');
 const { decode } = require('../utils/jwt');
 
 const verifyToken = async (req, res, next) => {

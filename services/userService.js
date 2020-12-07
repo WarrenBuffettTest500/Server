@@ -1,9 +1,23 @@
 const { User } = require('../models');
 
-exports.findOne = async filter => {
+exports.findByEmail = async email => {
   try {
     const user = await User.findOne({
-      where: { filter }
+      where: { email }
+    });
+
+    if (!user) return;
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.findByUid = async uid => {
+  try {
+    const user = await User.findOne({
+      where: { uid }
     });
 
     if (!user) return;

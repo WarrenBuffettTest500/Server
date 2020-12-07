@@ -1,12 +1,12 @@
 const userService = require('../services/userService');
 const { encode } = require('../utils/jwt');
-const RESPONSE = require('../constants/response');
+const RESPONSE = require('../constants/responses');
 
 exports.generateToken = async (req, res, next) => {
   const { email } = req.body;
 
   try {
-    const user = await userService.findOne(email);
+    const user = await userService.findByEmail(email);
 
     if (!user) {
       res.status(200).json({ result: RESPONSE.FAILURE });
@@ -24,7 +24,7 @@ exports.registerUser = async (req, res, next) => {
   const userInfo = req.body;
 
   try {
-    const user = await userService.findOne(userInfo.email);
+    const user = await userService.findByEmail(userInfo.email);
 
     if (user) {
       const token = encode(user);

@@ -1,5 +1,18 @@
 const preferenceInfoService = require('../services/preferenceInfo.service');
-const RESPONSE = require('../constants/response');
+const RESPONSE = require('../constants/responses');
+
+exports.getPreferenceInfo = async (req, res, next) => {
+  try {
+    const preferenceInfo = await preferenceInfoService.findById(req.params.preference_info_id);
+
+    res.status(200).json({
+      result: RESPONSE.OK,
+      preferenceInfo,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 exports.createPreferenceInfo = async (req, res, next) => {
   const userUid = req.params.user_id;
