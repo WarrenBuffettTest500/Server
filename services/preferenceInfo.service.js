@@ -1,10 +1,16 @@
 const { PreferenceInfo } = require('../models');
 
+exports.findById = async id => {
+  try {
+    return await PreferenceInfo.findByPk(id);
+  } catch (error) {
+    throw error;
+  }
+};
+
 exports.create = async preferenceData => {
   try {
-    const newPreferenceInfo = await PreferenceInfo.create(preferenceData);
-
-    return newPreferenceInfo;
+    return await PreferenceInfo.create(preferenceData);
   } catch (error) {
     throw error;
   }
@@ -16,11 +22,9 @@ exports.update = async (userUid, preferenceData) => {
       where: { userUid },
     });
 
-    const updatedPreferenceInfo = await PreferenceInfo.findOne({
+    return await PreferenceInfo.findOne({
       where: { userUid },
     });
-
-    return updatedPreferenceInfo;
   } catch (error) {
     throw error;
   }

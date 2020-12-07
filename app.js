@@ -10,7 +10,7 @@ initLoader(app);
 connectSequelize();
 
 const PATHS = require('./constants/paths');
-const RESPONSE = require('./constants/response');
+const RESPONSE = require('./constants/responses');
 
 const index = require('./routes/index');
 const users = require('./routes/users');

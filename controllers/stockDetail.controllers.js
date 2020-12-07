@@ -1,5 +1,5 @@
 const stockDetailService = require('../services/stockDetail.service');
-const RESPONSE = require('../constants/response');
+const RESPONSE = require('../constants/responses');
 
 exports.findStockDetails = async (req, res, next) => {
   const { keyword } = req.params;
@@ -11,7 +11,7 @@ exports.findStockDetails = async (req, res, next) => {
       res.status(200).json({ result: RESPONSE.FAILURE });
       return;
     }
-  
+
     res.status(200).send({ result: RESPONSE.OK, stockDetails });
   } catch (error) {
     console.error(error);

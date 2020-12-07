@@ -1,6 +1,6 @@
 const userService = require('../services/userService');
 const { encode } = require('../utils/jwt');
-const RESPONSE = require('../constants/response');
+const RESPONSE = require('../constants/responses');
 
 exports.generateToken = async (req, res, next) => {
   const { email } = req.body;
