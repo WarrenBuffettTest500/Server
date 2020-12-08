@@ -53,11 +53,9 @@ exports.updateUserPreferenceInfoId = async (uid, preferenceInfoId) => {
       where: { uid },
     });
 
-    const updatedUser = await User.findOne({
+    return await User.findOne({
       where: { uid },
     });
-
-    return updatedUser;
   } catch (error) {
     throw error;
   }
