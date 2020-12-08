@@ -1,7 +1,7 @@
 const stockDataService = require('../services/stockData.service');
 const RESPONSE = require('../constants/responses');
 
-exports.createStockData = async (req, res, next) => {
+exports.createPortfolioItem = async (req, res, next) => {
   const userUid = req.params.user_id;
   const { symbol, avgPrice, quantity } = req.body;
 
@@ -31,6 +31,32 @@ exports.getPortfolio = async (req, res, next) => {
     res.status(200).json({
       result: RESPONSE.OK,
       portfolio,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deletePortfolioItem = async (req, res, next) => {
+  try {
+    await stockDataService.delete(req.params.portfolio_item_id);
+
+    res.status(200).json({
+      result: RESPONSE.OK,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.updatePortfolioItem = async (req, res, next) => {
+  try {
+    const updatedPortfolioItem
+      = await stockDataService.update(req.params.portfolio_item_id, req.body);
+
+    res.status(200).json({
+      result: RESPONSE.OK,
+      portfolioItem: updatedPortfolioItem,
     });
   } catch (error) {
     next(error);
