@@ -15,10 +15,12 @@ const RESPONSE = require('./constants/responses');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const stockDetails = require('./routes/stockDetails');
+const companyProfiles = require('./routes/companyProfiles');
 
 app.use(PATHS.ROOT, index);
 app.use(PATHS.USERS, users);
 app.use(PATHS.STOCK_DETAILS, stockDetails);
+app.use(PATHS.COMPANY_PROFILES, companyProfiles);
 
 app.use(function(req, res, next) {
   next(createError(404));
