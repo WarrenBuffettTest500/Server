@@ -149,7 +149,7 @@
     "interestedSector3": "Financial Services",
     "period": "short",
     "preferredStockType": "growth",
-    "riskAppetite": "mid",
+    "riskAppetite": "medium",
     "stockProportion": "above80",
     "userUid": "o"
   },
