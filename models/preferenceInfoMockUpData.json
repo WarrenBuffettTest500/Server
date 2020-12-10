@@ -163,5 +163,170 @@
     "riskAppetite": "low",
     "stockProportion": "below20",
     "userUid": "p"
+  },
+  {
+    "id": 17,
+    "interestedSector1": "Healthcare",
+    "interestedSector2": "Financial Services",
+    "interestedSector3": null,
+    "period": "mid",
+    "preferredStockType": "growth",
+    "riskAppetite": "high",
+    "stockProportion": "below20",
+    "userUid": "q"
+  },
+  {
+    "id": 18,
+    "interestedSector1": "Basic Materials",
+    "interestedSector2": "Consumer Cyclical",
+    "interestedSector3": "Financial Services",
+    "period": "very-long",
+    "preferredStockType": "dividends",
+    "riskAppetite": "low",
+    "stockProportion": "below40",
+    "userUid": "r"
+  },
+  {
+    "id": 19,
+    "interestedSector1": "Financial Services",
+    "interestedSector2": "Technology",
+    "interestedSector3": "null",
+    "period": "mid",
+    "preferredStockType": "growth",
+    "riskAppetite": "low",
+    "stockProportion": "below40",
+    "userUid": "s"
+  },
+  {
+    "id": 20,
+    "interestedSector1": "Technology",
+    "interestedSector2": "Financial Services",
+    "interestedSector3": null,
+    "period": "very-long",
+    "preferredStockType": "growth",
+    "riskAppetite": "high",
+    "stockProportion": "below40",
+    "userUid": "t"
+  },
+  {
+    "id": 21,
+    "interestedSector1": "Technology",
+    "interestedSector2": "Consumer Cyclical",
+    "interestedSector3": null,
+    "period": "very-long",
+    "preferredStockType": "growth",
+    "riskAppetite": "low",
+    "stockProportion": "below60",
+    "userUid": "u"
+  },
+  {
+    "id": 22,
+    "interestedSector1": "Communication Services",
+    "interestedSector2": "Technology",
+    "interestedSector3": "Consumer Cyclical",
+    "period": "mid",
+    "preferredStockType": "growth",
+    "riskAppetite": "medium",
+    "stockProportion": "below60",
+    "userUid": "v"
+  },
+  {
+    "id": 23,
+    "interestedSector1": "Technology",
+    "interestedSector2": "Industrials",
+    "interestedSector3": "Healthcare",
+    "period": "short",
+    "preferredStockType": "growth",
+    "riskAppetite": "medium",
+    "stockProportion": "below60",
+    "userUid": "w"
+  },
+  {
+    "id": 24,
+    "interestedSector1": "Basic Materials",
+    "interestedSector2": "Industrials",
+    "interestedSector3": "Utilities",
+    "period": "mid",
+    "preferredStockType": "dividends",
+    "riskAppetite": "low",
+    "stockProportion": "below60",
+    "userUid": "x"
+  },
+  {
+    "id": 25,
+    "interestedSector1": "Healthcare",
+    "interestedSector2": "Financial Services",
+    "interestedSector3": "Consumer Cyclical",
+    "period": "very-long",
+    "preferredStockType": "dividends",
+    "riskAppetite": "low",
+    "stockProportion": "above80",
+    "userUid": "y"
+  },
+  {
+    "id": 26,
+    "interestedSector1": "Technology",
+    "interestedSector2": "Communication Services",
+    "interestedSector3": null,
+    "period": "short",
+    "preferredStockType": "growth",
+    "riskAppetite": "medium",
+    "stockProportion": "below40",
+    "userUid": "z"
+  },
+  {
+    "id": 27,
+    "interestedSector1": "Consumer Defensive",
+    "interestedSector2": "Real Estate",
+    "interestedSector3": null,
+    "period": "mid",
+    "preferredStockType": "dividends",
+    "riskAppetite": "medium",
+    "stockProportion": "below20",
+    "userUid": "aa"
+  },
+  {
+    "id": 28,
+    "interestedSector1": "Industrials",
+    "interestedSector2": "Healthcare",
+    "interestedSector3": "Financial Services",
+    "period": "very-long",
+    "preferredStockType": "dividends",
+    "riskAppetite": "medium",
+    "stockProportion": "above80",
+    "userUid": "ab"
+  },
+  {
+    "id": 29,
+    "interestedSector1": "Consumer Defensive",
+    "interestedSector2": "Industrials",
+    "interestedSector3": null,
+    "period": "very-long",
+    "preferredStockType": "dividends",
+    "riskAppetite": "low",
+    "stockProportion": "below40",
+    "userUid": "ac"
+  },
+  {
+    "id": 30,
+    "interestedSector1": "Technology",
+    "interestedSector2": "Consumer Cyclical",
+    "interestedSector3": "Financial Services",
+    "period": "short",
+    "preferredStockType": "growth",
+    "riskAppetite": "medium",
+    "stockProportion": "above80",
+    "userUid": "ad"
+  },
+  {
+    "id": 31,
+    "interestedSector1": "Energy",
+    "interestedSector2": "Basic Materials",
+    "interestedSector3": "Consumer Defensive",
+    "period": "long",
+    "preferredStockType": "dividends",
+    "riskAppetite": "low",
+    "stockProportion": "below20",
+    "userUid": "ae"
   }
 ]

@@ -22,20 +22,6 @@ exports.createPortfolioItem = async (req, res, next) => {
   }
 };
 
-exports.getPortfolio = async (req, res, next) => {
-  const userUid = req.params.user_id;
-
-  try {
-    const portfolio = await portfolioItemService.findUserStocks(userUid);
-
-    res.status(200).json({
-      result: RESPONSE.OK,
-      portfolio,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
 
 exports.deletePortfolioItem = async (req, res, next) => {
   try {
