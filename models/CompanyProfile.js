@@ -60,6 +60,16 @@ const CompanyProfile = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: '-',
     },
+    marketCap: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 0,
+    },
+    views: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    }
   }, {
     timestamps: false,
   });
