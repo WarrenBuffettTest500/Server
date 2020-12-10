@@ -1,5 +1,5 @@
-const StockData = (sequelize, DataTypes) => {
-  return sequelize.define('stockData', {
+const PortfolioItem = (sequelize, DataTypes) => {
+  return sequelize.define('portfolioItem', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -30,4 +30,4 @@ const StockData = (sequelize, DataTypes) => {
   });
 };
 
-module.exports = StockData;
+module.exports = PortfolioItem;

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getCurrentUser, updateUserInfo } = require('../controllers/user.controller');
 const { getPreferenceInfo, createPreferenceInfo, updatePreferenceInfo } = require('../controllers/preferenceInfo.controller');
-const { createPortfolioItem, getPortfolio, deletePortfolioItem, updatePortfolioItem } = require('../controllers/stockData.controller');
+const { createPortfolioItem, getPortfolio, deletePortfolioItem, updatePortfolioItem } = require('../controllers/portfolioItem.controller');
 
 router.get('/current_user', getCurrentUser);
 router.put('/:user_id', updateUserInfo);

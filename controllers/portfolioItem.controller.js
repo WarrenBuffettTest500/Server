@@ -1,4 +1,4 @@
-const stockDataService = require('../services/stockData.service');
+const portfolioItemService = require('../services/portfolioItem.service');
 const RESPONSE = require('../constants/responses');
 
 exports.createPortfolioItem = async (req, res, next) => {
@@ -6,7 +6,7 @@ exports.createPortfolioItem = async (req, res, next) => {
   const { symbol, avgPrice, quantity } = req.body;
 
   try {
-    const newStockData = await stockDataService.create({
+    const newportfolioItem = await portfolioItemService.create({
       symbol,
       avgPrice,
       quantity,
@@ -15,7 +15,7 @@ exports.createPortfolioItem = async (req, res, next) => {
 
     res.status(201).json({
       result: RESPONSE.OK,
-      stockData: newStockData,
+      portfolioItem: newportfolioItem,
     });
   } catch (error) {
     next(error);
@@ -26,7 +26,7 @@ exports.getPortfolio = async (req, res, next) => {
   const userUid = req.params.user_id;
 
   try {
-    const portfolio = await stockDataService.findUserStocks(userUid);
+    const portfolio = await portfolioItemService.findUserStocks(userUid);
 
     res.status(200).json({
       result: RESPONSE.OK,
@@ -39,7 +39,7 @@ exports.getPortfolio = async (req, res, next) => {
 
 exports.deletePortfolioItem = async (req, res, next) => {
   try {
-    await stockDataService.delete(req.params.portfolio_item_id);
+    await portfolioItemService.delete(req.params.portfolio_item_id);
 
     res.status(200).json({
       result: RESPONSE.OK,
@@ -52,7 +52,7 @@ exports.deletePortfolioItem = async (req, res, next) => {
 exports.updatePortfolioItem = async (req, res, next) => {
   try {
     const updatedPortfolioItem
-      = await stockDataService.update(req.params.portfolio_item_id, req.body);
+      = await portfolioItemService.update(req.params.portfolio_item_id, req.body);
 
     res.status(200).json({
       result: RESPONSE.OK,
