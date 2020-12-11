@@ -68,7 +68,7 @@ const CompanyProfile = (sequelize, DataTypes) => {
     views: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 1,
+      defaultValue: 0,
     }
   }, {
     timestamps: false,

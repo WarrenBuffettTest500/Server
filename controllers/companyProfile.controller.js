@@ -32,3 +32,9 @@ exports.updateViews = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getCompanyRecommendations = async (req, res, next) => {
+  // 로그인하지 않았을 때 기업카드 무작위로 보여주기
+
+  // 로그인했을 땐 item-based collaborative filtering
+};

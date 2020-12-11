@@ -1,8 +1,8 @@
-const { StockData } = require('../models');
+const { PortfolioItem } = require('../models');
 
 exports.create = async data => {
   try {
-    return await StockData.create(data);
+    return await PortfolioItem.create(data);
   } catch (error) {
     throw error;
   }
@@ -10,7 +10,7 @@ exports.create = async data => {
 
 exports.findUserStocks = async userUid => {
   try {
-    return await StockData.findAll({
+    return await PortfolioItem.findAll({
       where: {
         userUid,
       }
@@ -22,7 +22,7 @@ exports.findUserStocks = async userUid => {
 
 exports.delete = async portfolioItemId => {
   try {
-    await StockData.destroy({
+    await PortfolioItem.destroy({
       where: {
         id: portfolioItemId,
       }
@@ -36,7 +36,7 @@ exports.update = async (id, data) => {
   try {
     const { symbol, avgPrice, quantity } = data;
 
-    await StockData.update({
+    await PortfolioItem.update({
       symbol,
       avgPrice,
       quantity,
@@ -44,7 +44,7 @@ exports.update = async (id, data) => {
       where: { id },
     });
 
-    return await StockData.findByPk(id);
+    return await PortfolioItem.findByPk(id);
   } catch (error) {
     throw error;
   }

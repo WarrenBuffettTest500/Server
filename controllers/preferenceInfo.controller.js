@@ -42,6 +42,7 @@ exports.createPreferenceInfo = async (req, res, next) => {
 
 exports.updatePreferenceInfo = async (req, res, next) => {
   const userUid = req.params.user_id;
+  console.log(req.body);
   const [interestedSector1, interestedSector2, interestedSector3] = req.body.interestedSectors;
   const { riskAppetite, stockProportion, preferredStockType, period } = req.body;
 
