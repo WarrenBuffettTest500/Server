@@ -52,7 +52,7 @@ exports.findAll = async (keyWord, sector, industry, marketCap) => {
         [Op.and]: [
           { sector },
           { industry },
-          { views: { [Op.gte]: 1 } },
+          { views: { [Op.gte]: 0 } },
           {
             marketCap: {
               [Op.gte]: marketCap * 0.5,
