@@ -60,3 +60,11 @@ exports.updateUserPreferenceInfoId = async (uid, preferenceInfoId) => {
     throw error;
   }
 };
+
+exports.getAll = async () => {
+  try {
+    return await User.findAll();
+  } catch (error) {
+    throw error;
+  }
+};

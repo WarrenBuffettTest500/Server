@@ -1,12 +1,13 @@
 const portfolioItemService = require('../services/portfolioItem.service');
 const RESPONSE = require('../constants/responses');
-const findNeighborDistancesByPreference = require('../utils/findNeighborDistancesByPreference');
+const calculateNeighborDistancesByPreference = require('../utils/calculateNeighborDistancesByPreference');
+const calculateCosineSimilaritiesByPortfolio = require('../utils/calculateCosineSimilaritiesByPortfolio');
 
 exports.getPortfolio = async (req, res, next) => {
   const userUid = req.params.user_id;
 
   try {
-    const portfolio = await portfolioItemService.findUserStocks(userUid);
+    const portfolio = await portfolioItemService.getPortfolio(userUid);
 
     res.status(200).json({
       result: RESPONSE.OK,
@@ -21,12 +22,12 @@ exports.getPortfolioRecommendationsByPreference = async (req, res, next) => {
   const { user_id } = req.params;
 
   try {
-    const allUsersSortedByDistance = await findNeighborDistancesByPreference(user_id);
-    const nearUsers = allUsersSortedByDistance.slice(0, 9);
+    const allUsersSortedByDistance = await calculateNeighborDistancesByPreference(user_id);
+    const nearbyUsers = allUsersSortedByDistance.slice(0, 9);
 
     const portfolios = await Promise.all(
-      nearUsers.map(async user => {
-        const portfolio = await portfolioItemService.findUserStocks(user.userUid);
+      nearbyUsers.map(async user => {
+        const portfolio = await portfolioItemService.getPortfolio(user.userUid);
 
         return {
           owner: user.userUid,
@@ -45,5 +46,16 @@ exports.getPortfolioRecommendationsByPreference = async (req, res, next) => {
 };
 
 exports.getPortfolioRecommendationsByPortfolio = async (req, res, next) => {
+  const { user_id } = req.params;
 
+  try {
+    const allPortfoliosSortedByCosineSimilarity = await calculateCosineSimilaritiesByPortfolio(user_id);
+
+    res.status(200).json({
+      result: RESPONSE.OK,
+      portfolios: allPortfoliosSortedByCosineSimilarity,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
