@@ -38,3 +38,20 @@ exports.getCompanyRecommendations = async (req, res, next) => {
 
   // 로그인했을 땐 item-based collaborative filtering
 };
+
+exports.getAllByAttribute = async (req, res, next) => {
+  const { attribute } = req.params;
+
+  try {
+    const data = await companyProfileService.getAllAttr(attribute);
+
+    if (!data) {
+      res.status(200).json({ result: RESPONSE.FAILURE });
+      return;
+    }
+
+    res.status(200).json({ result: RESPONSE.OK, data });
+  } catch (error) {
+    next(error);
+  }
+};

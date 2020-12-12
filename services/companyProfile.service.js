@@ -81,3 +81,13 @@ exports.update = async symbol => {
     throw error;
   }
 };
+
+exports.getAllAttr = async attribute => {
+  try {
+    return await CompanyProfile.findAll({
+      attributes: [attribute],
+    });
+  } catch (error) {
+    throw error;
+  }
+};
