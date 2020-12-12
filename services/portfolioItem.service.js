@@ -8,7 +8,7 @@ exports.create = async data => {
   }
 };
 
-exports.findUserStocks = async userUid => {
+exports.getPortfolio = async userUid => {
   try {
     return await PortfolioItem.findAll({
       where: {
