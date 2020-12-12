@@ -12,10 +12,10 @@ exports.recommendationSymbolList = async (req, res, next) => {
       return;
     }
 
-    const { sector, industry, marketCap } = companyProfile.dataValues;
+    const { sector, industry, marketCap, website } = companyProfile.dataValues;
     const recommendationSymbolList = await companyProfileService.findAll(keyword, sector, industry, marketCap);
 
-    res.status(200).json({ result: RESPONSE.OK, recommendationSymbolList, recommendationSymbolInfo: { sector, industry } });
+    res.status(200).json({ result: RESPONSE.OK, recommendationSymbolList, recommendationSymbolInfo: { sector, industry, website } });
   } catch (error) {
     next(error);
   }

@@ -36,7 +36,7 @@ exports.findbyKeyWord = async (keyWord, intervalTime) => {
 exports.findOne = async keyWord => {
   try {
     return await CompanyProfile.findOne({
-      attributes: ['sector', 'industry', 'marketCap'],
+      attributes: ['sector', 'industry', 'marketCap', 'website'],
       where: { symbol: keyWord }
     });
   } catch (error) {
@@ -52,7 +52,7 @@ exports.findAll = async (keyWord, sector, industry, marketCap) => {
         [Op.and]: [
           { sector },
           { industry },
-          { views: { [Op.gte]: 1 } },
+          { views: { [Op.gte]: 0 } },
           {
             marketCap: {
               [Op.gte]: marketCap * 0.5,

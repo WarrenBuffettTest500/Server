@@ -1,9 +1,12 @@
-const { CompanyProfile } = require('./models');
+const { User, PreferenceInfo, PortfolioItem, CompanyProfile } = require('./models');
 
 const save = async () => {
   const fs = require('fs');
-  let rawdata = fs.readFileSync('./models/summarys.json');
+  // let rawdata = fs.readFileSync('./models/userMockUpData.json');
   // let rawdata = fs.readFileSync('./models/summarys_2.json');
+  // let rawdata = fs.readFileSync('./models/summarys.json');
+  // let rawdata = fs.readFileSync('./models/preferenceInfoMockUpData.json');
+  // let rawdata = fs.readFileSync('./models/portfolioItemMockUpData.json');
   let data = JSON.parse(rawdata);
 
   try {
