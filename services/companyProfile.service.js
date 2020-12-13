@@ -81,3 +81,13 @@ exports.update = async symbol => {
     throw error;
   }
 };
+
+exports.findAllInRandomOrder = async () => {
+  try {
+    return await CompanyProfile.findAll({
+      order: sequelize.random(),
+    });
+  } catch (error) {
+    throw error;
+  }
+};

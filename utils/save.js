@@ -36,7 +36,7 @@ const save = async () => {
 
     for (let i = 0; i < portfolioItemData.length; i++) {
       await PortfolioItem.create(portfolioItemData[i]);
-      console.log(i, portfolioItemData.length);
+      console.log(i + 1, portfolioItemData.length);
     }
   } catch (error) {
     console.error(error);
