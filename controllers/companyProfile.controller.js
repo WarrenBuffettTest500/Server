@@ -12,10 +12,10 @@ exports.recommendationSymbolList = async (req, res, next) => {
       return;
     }
 
-    const { sector, industry, marketCap } = companyProfile.dataValues;
+    const { sector, industry, marketCap, website } = companyProfile.dataValues;
     const recommendationSymbolList = await companyProfileService.findAll(keyword, sector, industry, marketCap);
 
-    res.status(200).json({ result: RESPONSE.OK, recommendationSymbolList, recommendationSymbolInfo: { sector, industry } });
+    res.status(200).json({ result: RESPONSE.OK, recommendationSymbolList, recommendationSymbolInfo: { sector, industry, website } });
   } catch (error) {
     next(error);
   }
@@ -37,4 +37,21 @@ exports.getCompanyRecommendations = async (req, res, next) => {
   // 로그인하지 않았을 때 기업카드 무작위로 보여주기
 
   // 로그인했을 땐 item-based collaborative filtering
+};
+
+exports.getAllByAttribute = async (req, res, next) => {
+  const { attribute } = req.params;
+
+  try {
+    const data = await companyProfileService.getAllAttr(attribute);
+
+    if (!data) {
+      res.status(200).json({ result: RESPONSE.FAILURE });
+      return;
+    }
+
+    res.status(200).json({ result: RESPONSE.OK, data });
+  } catch (error) {
+    next(error);
+  }
 };
