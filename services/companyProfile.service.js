@@ -36,7 +36,7 @@ exports.findbyKeyWord = async (keyWord, intervalTime) => {
 exports.findOne = async keyWord => {
   try {
     return await CompanyProfile.findOne({
-      attributes: ['sector', 'industry', 'marketCap'],
+      attributes: ['sector', 'industry', 'marketCap', 'website'],
       where: { symbol: keyWord }
     });
   } catch (error) {
@@ -86,6 +86,16 @@ exports.findAllInRandomOrder = async () => {
   try {
     return await CompanyProfile.findAll({
       order: sequelize.random(),
+    });
+  } catch (error) {
+    throw error;  
+  }
+}
+
+exports.getAllAttr = async attribute => {
+  try {
+    return await CompanyProfile.findAll({
+      attributes: [attribute],
     });
   } catch (error) {
     throw error;

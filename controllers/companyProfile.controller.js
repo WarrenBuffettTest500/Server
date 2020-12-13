@@ -12,10 +12,10 @@ exports.recommendationSymbolList = async (req, res, next) => {
       return;
     }
 
-    const { sector, industry, marketCap } = companyProfile.dataValues;
+    const { sector, industry, marketCap, website } = companyProfile.dataValues;
     const recommendationSymbolList = await companyProfileService.findAll(keyword, sector, industry, marketCap);
 
-    res.status(200).json({ result: RESPONSE.OK, recommendationSymbolList, recommendationSymbolInfo: { sector, industry } });
+    res.status(200).json({ result: RESPONSE.OK, recommendationSymbolList, recommendationSymbolInfo: { sector, industry, website } });
   } catch (error) {
     next(error);
   }
@@ -41,6 +41,23 @@ exports.getRandomCompaines = async (req, res, next) => {
       result: RESPONSE.OK,
       companies: allCompaniesInRandomOrder,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getAllByAttribute = async (req, res, next) => {
+  const { attribute } = req.params;
+
+  try {
+    const data = await companyProfileService.getAllAttr(attribute);
+
+    if (!data) {
+      res.status(200).json({ result: RESPONSE.FAILURE });
+      return;
+    }
+
+    res.status(200).json({ result: RESPONSE.OK, data });
   } catch (error) {
     next(error);
   }

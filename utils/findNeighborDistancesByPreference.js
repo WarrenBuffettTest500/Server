@@ -1,9 +1,10 @@
 const { PreferenceInfo } = require('../models');
 
-const calculateNeighborDistancesByPreference = async userUid => {
+const findNeighborDistancesByPreference = async userUid => {
   const preferenceInfos = await PreferenceInfo.findAll();
   const basePreferenceInfo = preferenceInfos.find(preferenceInfo => preferenceInfo.userUid === userUid);
   const comparitiveGroup = preferenceInfos.filter(preferenceInfo => preferenceInfo.userUid !== userUid);
+
   const baseInterestedSectorArray = [basePreferenceInfo.interestedSector1, basePreferenceInfo.interestedSector2, basePreferenceInfo.interestedSector3];
   const baseInterestedSectorTable = {};
 
@@ -77,4 +78,6 @@ const calculateNeighborDistancesByPreference = async userUid => {
   return distances.sort((a, b) => a.distance - b.distance);
 };
 
-module.exports = calculateNeighborDistancesByPreference;
+// findNeighborDistancesByPreference('cQAHr98ZikhaQzXfvU41Cfs3fCi2');
+
+module.exports = findNeighborDistancesByPreference;
