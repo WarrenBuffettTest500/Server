@@ -82,6 +82,16 @@ exports.update = async symbol => {
   }
 };
 
+exports.findAllInRandomOrder = async () => {
+  try {
+    return await CompanyProfile.findAll({
+      order: sequelize.random(),
+    });
+  } catch (error) {
+    throw error;  
+  }
+}
+
 exports.getAllAttr = async attribute => {
   try {
     return await CompanyProfile.findAll({

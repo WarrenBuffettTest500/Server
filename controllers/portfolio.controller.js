@@ -53,7 +53,7 @@ exports.getPortfolioRecommendationsByPortfolio = async (req, res, next) => {
 
     res.status(200).json({
       result: RESPONSE.OK,
-      portfolios: allPortfoliosSortedByCosineSimilarity,
+      portfolios: allPortfoliosSortedByCosineSimilarity.filter(portfolio => portfolio.similarity),
     });
   } catch (error) {
     next(error);

@@ -28,7 +28,7 @@ const calculateCosineSimilaritiesByPortfolio = async userUid => {
   const basePortfolioTable = convertPortfolioToTable(basePortfolio);
   const baseLength = calculateLength(basePortfolioTable);
 
-  const portfoliosWithSimilaries = await Promise.all(
+  const portfoliosWithSimilarities = await Promise.all(
     otherUsers.map(async user => {
       const comparingPortfolio = await portfolioItemService.getPortfolio(user.uid);
       const comparingPortfolioTable = convertPortfolioToTable(comparingPortfolio);
@@ -54,7 +54,7 @@ const calculateCosineSimilaritiesByPortfolio = async userUid => {
     })
   );
 
-  return portfoliosWithSimilaries.sort((a, b) => b.similarity - a.similarity);
+  return portfoliosWithSimilarities.sort((a, b) => b.similarity - a.similarity);
 };
 
 module.exports = calculateCosineSimilaritiesByPortfolio;

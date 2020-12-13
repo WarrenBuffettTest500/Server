@@ -33,10 +33,17 @@ exports.updateViews = async (req, res, next) => {
   }
 };
 
-exports.getCompanyRecommendations = async (req, res, next) => {
-  // 로그인하지 않았을 때 기업카드 무작위로 보여주기
+exports.getRandomCompaines = async (req, res, next) => {
+  try {
+    const allCompaniesInRandomOrder = await companyProfileService.findAllInRandomOrder();
 
-  // 로그인했을 땐 item-based collaborative filtering
+    res.status(200).json({
+      result: RESPONSE.OK,
+      companies: allCompaniesInRandomOrder,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 exports.getAllByAttribute = async (req, res, next) => {
