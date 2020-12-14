@@ -11,6 +11,7 @@ db.User = require('./User')(sequelize, Sequelize);
 db.PreferenceInfo = require('./PreferenceInfo')(sequelize, Sequelize);
 db.CompanyProfile = require('./CompanyProfile')(sequelize, Sequelize);
 db.PortfolioItem = require('./PortfolioItem')(sequelize, Sequelize);
+db.Hit = require('./Hit')(sequelize, Sequelize);
 
 db.User.hasOne(db.PreferenceInfo, {
   onDelete: 'cascade',

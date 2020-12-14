@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const app = express();
 const initLoader = require('./loaders');
 const connectSequelize = require('./config/db');
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 initLoader(app);
@@ -16,11 +17,14 @@ const index = require('./routes/index');
 const users = require('./routes/users');
 const stockDetails = require('./routes/stockDetails');
 const companyProfiles = require('./routes/companyProfiles');
+const hits = require('./routes/hits');
 
+app.use(cookieParser());
 app.use(PATHS.ROOT, index);
 app.use(PATHS.USERS, users);
 app.use(PATHS.STOCK_DETAILS, stockDetails);
 app.use(PATHS.COMPANY_PROFILES, companyProfiles);
+app.use('/hits', hits);
 
 app.use(function(req, res, next) {
   next(createError(404));

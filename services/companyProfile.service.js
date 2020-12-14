@@ -52,7 +52,6 @@ exports.findAll = async (keyWord, sector, industry, marketCap) => {
         [Op.and]: [
           { sector },
           { industry },
-          { views: { [Op.gte]: 0 } },
           {
             marketCap: {
               [Op.gte]: marketCap * 0.5,
@@ -68,24 +67,34 @@ exports.findAll = async (keyWord, sector, industry, marketCap) => {
   }
 };
 
-exports.update = async symbol => {
-  try {
-    return await CompanyProfile.update(
-      {
-        views: sequelize.literal('views + 1'),
-      }, {
-      where: { symbol },
-    }
-    );
-  } catch (error) {
-    throw error;
-  }
-};
+// exports.update = async symbol => {
+//   try {
+//     return await CompanyProfile.update(
+//       {
+//         views: sequelize.literal('views + 1'),
+//       }, {
+//       where: { symbol },
+//     }
+//     );
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 exports.findAllInRandomOrder = async () => {
   try {
     return await CompanyProfile.findAll({
       order: sequelize.random(),
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.getAllAttr = async attribute => {
+  try {
+    return await CompanyProfile.findAll({
+      attributes: [attribute],
     });
   } catch (error) {
     throw error;  
