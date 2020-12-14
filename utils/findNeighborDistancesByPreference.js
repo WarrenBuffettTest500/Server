@@ -78,6 +78,4 @@ const findNeighborDistancesByPreference = async userUid => {
   return distances.sort((a, b) => a.distance - b.distance);
 };
 
-// findNeighborDistancesByPreference('cQAHr98ZikhaQzXfvU41Cfs3fCi2');
-
 module.exports = findNeighborDistancesByPreference;

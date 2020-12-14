@@ -21,19 +21,6 @@ exports.recommendationSymbolList = async (req, res, next) => {
   }
 };
 
-exports.getRandomCompanies = async (req, res, next) => {
-  try {
-    const allCompaniesInRandomOrder = await companyProfileService.findAllInRandomOrder();
-
-    res.status(200).json({
-      result: RESPONSE.OK,
-      companies: allCompaniesInRandomOrder,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
 exports.getAllByAttribute = async (req, res, next) => {
   const { attribute } = req.params;
 

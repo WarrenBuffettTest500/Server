@@ -13,8 +13,8 @@ const initLoaders = app => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
-  cron.schedule('*/3 * * * *', () => {
-    console.log('scheduler running every 3 minutes..');
+  cron.schedule('* * * * *', () => {
+    console.log('scheduler running every minute..');
     shell.exec('node utils/destroyOldHitData.js');
   });
 };
