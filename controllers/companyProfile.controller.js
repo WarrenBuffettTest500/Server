@@ -21,19 +21,7 @@ exports.recommendationSymbolList = async (req, res, next) => {
   }
 };
 
-exports.updateViews = async (req, res, next) => {
-  const { keyword } = req.params;
-
-  try {
-    await companyProfileService.update(keyword);
-
-    res.status(200).json({ result: RESPONSE.OK });
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.getRandomCompaines = async (req, res, next) => {
+exports.getRandomCompanies = async (req, res, next) => {
   try {
     const allCompaniesInRandomOrder = await companyProfileService.findAllInRandomOrder();
 

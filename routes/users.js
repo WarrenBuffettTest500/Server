@@ -4,7 +4,6 @@ const { getCurrentUser, updateUserInfo } = require('../controllers/user.controll
 const { getPreferenceInfo, createPreferenceInfo, updatePreferenceInfo } = require('../controllers/preferenceInfo.controller');
 const { createPortfolioItem, deletePortfolioItem, updatePortfolioItem } = require('../controllers/portfolioItem.controller');
 const { getPortfolio, getPortfolioRecommendationsByPreference, getPortfolioRecommendationsByPortfolio } = require('../controllers/portfolio.controller');
-const { getRandomCompaines } = require('../controllers/companyProfile.controller');
 
 router.get('/current_user', getCurrentUser);
 router.put('/:user_id', updateUserInfo);
@@ -19,6 +18,5 @@ router.delete('/:user_id/portfolio_items/:portfolio_item_id', deletePortfolioIte
 
 router.get('/:user_id/portfolios/recommendations/preference', getPortfolioRecommendationsByPreference);
 router.get('/:user_id/portfolios/recommendations/portfolio', getPortfolioRecommendationsByPortfolio);
-router.get('/:user_id/companies/recommendations', getRandomCompaines);
 
 module.exports = router;

@@ -6,6 +6,12 @@ exports.createPortfolioItem = async (req, res, next) => {
   const { symbol, avgPrice, quantity } = req.body;
 
   try {
+
+  } catch (error) {
+    next(error);
+  }
+
+  try {
     const newportfolioItem = await portfolioItemService.create({
       symbol,
       avgPrice,
