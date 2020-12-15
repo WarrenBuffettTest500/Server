@@ -3,7 +3,7 @@ const { THIRTY_MINUTES } = require('../constants/numbers');
 
 exports.createHit = async (req, res, next) => {
   const { symbol } = req.params;
-  const { buffetTest500: userByCookie } = req.cookies;
+  const { buffettTest500: userByCookie } = req.cookies;
 
   try {
     const pastHit = await hitService.getPast(symbol, userByCookie);

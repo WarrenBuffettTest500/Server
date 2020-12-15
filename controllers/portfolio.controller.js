@@ -22,7 +22,7 @@ exports.getPortfolio = async (req, res, next) => {
 
 exports.getPortfolioRecommendationsByPreference = async (req, res, next) => {
   const { user_id } = req.params;
-  const offset = Number(req.query.offset);
+  const offset = Number(req.query.page) * LIMIT;
 
   try {
     const allUsersSortedByDistance = await calculateNeighborDistancesByPreference(user_id);
@@ -50,7 +50,7 @@ exports.getPortfolioRecommendationsByPreference = async (req, res, next) => {
 
 exports.getPortfolioRecommendationsByPortfolio = async (req, res, next) => {
   const { user_id } = req.params;
-  const offset = Number(req.query.offset);
+  const offset = Number(req.query.page) * LIMIT;
 
   try {
     const allPortfoliosSortedByCosineSimilarity = await calculateCosineSimilaritiesByPortfolio(user_id);
