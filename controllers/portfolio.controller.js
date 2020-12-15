@@ -55,8 +55,9 @@ exports.getPortfolioRecommendationsByPortfolio = async (req, res, next) => {
   try {
     const allPortfoliosSortedByCosineSimilarity = await calculateCosineSimilaritiesByPortfolio(user_id);
 
-    const sortedPortfoliosFilterd = allPortfoliosSortedByCosineSimilarity.filter(portfolio => portfolio.similarity);
-    console.log(sortedPortfoliosFilterd.length, offset);
+    const sortedPortfoliosFilterd
+      = allPortfoliosSortedByCosineSimilarity.filter(portfolio => portfolio.similarity);
+
     res.status(200).json({
       result: RESPONSE.OK,
       portfolios: sortedPortfoliosFilterd.slice(offset, offset + LIMIT),
