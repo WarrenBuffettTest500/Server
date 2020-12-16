@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const { sequelize } = require('../models');
 
 exports.findByEmail = async email => {
   try {
@@ -64,6 +65,16 @@ exports.updateUserPreferenceInfoId = async (uid, preferenceInfoId) => {
 exports.getAll = async () => {
   try {
     return await User.findAll();
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.getAllRandomly = async () => {
+  try {
+    return await User.findAll({
+      order: sequelize.random(),
+    });
   } catch (error) {
     throw error;
   }

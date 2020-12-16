@@ -60,31 +60,7 @@ exports.findAll = async (keyWord, sector, industry, marketCap) => {
           },
           { symbol: { [Op.not]: keyWord } }
         ],
-      }
-    });
-  } catch (error) {
-    throw error;
-  }
-};
-
-// exports.update = async symbol => {
-//   try {
-//     return await CompanyProfile.update(
-//       {
-//         views: sequelize.literal('views + 1'),
-//       }, {
-//       where: { symbol },
-//     }
-//     );
-//   } catch (error) {
-//     throw error;
-//   }
-// };
-
-exports.findAllInRandomOrder = async () => {
-  try {
-    return await CompanyProfile.findAll({
-      order: sequelize.random(),
+      },
     });
   } catch (error) {
     throw error;
@@ -97,9 +73,9 @@ exports.getAllAttr = async attribute => {
       attributes: [attribute],
     });
   } catch (error) {
-    throw error;  
+    throw error;
   }
-}
+};
 
 exports.getAllAttr = async attribute => {
   try {

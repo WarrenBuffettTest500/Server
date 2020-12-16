@@ -1,3 +1,4 @@
 const hitService = require('../services/hit.service');
+const { THIRTY_MINUTES } = require('../constants/numbers');
 
-hitService.destroyOld(3 * 60 * 1000);
+hitService.destroyOld(THIRTY_MINUTES);
