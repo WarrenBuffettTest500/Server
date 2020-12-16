@@ -8,18 +8,40 @@ exports.recommendationSymbolList = async (req, res, next) => {
     const companyProfile = await companyProfileService.findOne(keyword);
 
     if (!companyProfile) {
-      res.status(200).json({ result: RESPONSE.FAILURE });
+      res.status(200).json({
+        result: RESPONSE.OK,
+        message: 'not found'
+      });
+
       return;
     }
 
     const { sector, industry, marketCap, website } = companyProfile.dataValues;
-    const recommendationSymbolList = await companyProfileService.findAll(keyword, sector, industry, marketCap);
+    const recommendationSymbolList
+      = await companyProfileService.findAll(keyword, sector, industry, marketCap);
 
     if (!recommendationSymbolList.length) {
-      res.status(200).json({ result: RESPONSE.FAILURE, recommendationSymbolInfo: { sector, industry, website } });
+      res.status(200).json({
+        result: RESPONSE.OK,
+        recommendationSymbolInfo: {
+          sector,
+          industry,
+          website,
+        },
+      });
+
       return;
     }
-    res.status(200).json({ result: RESPONSE.OK, recommendationSymbolList, recommendationSymbolInfo: { sector, industry, website } });
+
+    res.status(200).json({
+      result: RESPONSE.OK,
+      recommendationSymbolList,
+      recommendationSymbolInfo: {
+        sector,
+        industry,
+        website,
+      },
+    });
   } catch (error) {
     next(error);
   }
@@ -33,6 +55,7 @@ exports.getAllByAttribute = async (req, res, next) => {
 
     if (!data) {
       res.status(200).json({ result: RESPONSE.FAILURE });
+
       return;
     }
 

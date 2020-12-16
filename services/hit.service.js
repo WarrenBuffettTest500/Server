@@ -36,9 +36,15 @@ exports.updateUpdatedAt = async pastHit => {
   }
 };
 
-exports.getAll = async () => {
+exports.getAllWithInTime = async time => {
   try {
-    return await Hit.findAll();
+    return await Hit.findAll({
+      where: {
+        updatedAt: {
+          [Op.gte]: Date.now() - time,
+        },
+      },
+    });
   } catch (error) {
     throw error;
   }

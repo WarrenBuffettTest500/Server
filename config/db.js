@@ -1,13 +1,12 @@
 const { sequelize } = require('../models');
 
-const connectSequelize = () => {
-  sequelize.sync({ force: false })
-    .then(() => {
-      console.log('connection');
-    })
-    .catch(err => {
-      console.error(err);
-    })
+const connectSequelize = async () => {
+  try {
+    sequelize.sync({ force: false });
+    console.log('database connected');
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 module.exports = connectSequelize;
