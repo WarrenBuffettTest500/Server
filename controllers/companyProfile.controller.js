@@ -20,19 +20,6 @@ exports.recommendationSymbolList = async (req, res, next) => {
     const recommendationSymbolList
       = await companyProfileService.findAll(keyword, sector, industry, marketCap);
 
-    if (!recommendationSymbolList.length) {
-      res.status(200).json({
-        result: RESPONSE.OK,
-        recommendationSymbolInfo: {
-          sector,
-          industry,
-          website,
-        },
-      });
-
-      return;
-    }
-
     res.status(200).json({
       result: RESPONSE.OK,
       recommendationSymbolList,
