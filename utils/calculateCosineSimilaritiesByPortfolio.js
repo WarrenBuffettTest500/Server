@@ -24,13 +24,13 @@ const calculateLength = portfolioTable => {
 const calculateCosineSimilaritiesByPortfolio = async userUid => {
   const users = await userService.getAll();
   const otherUsers = users.filter(user => user.uid !== userUid);
-  const basePortfolio = await portfolioItemService.getPortfolio(userUid);
+  const basePortfolio = await portfolioItemService.getOne(userUid);
   const basePortfolioTable = convertPortfolioToTable(basePortfolio);
   const baseLength = calculateLength(basePortfolioTable);
 
   const portfoliosWithSimilarities = await Promise.all(
     otherUsers.map(async user => {
-      const comparingPortfolio = await portfolioItemService.getPortfolio(user.uid);
+      const comparingPortfolio = await portfolioItemService.getOne(user.uid);
       const comparingPortfolioTable = convertPortfolioToTable(comparingPortfolio);
       let dotProduct = 0;
       let comparingLengthSquared = 0;

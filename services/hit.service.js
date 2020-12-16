@@ -54,7 +54,7 @@ exports.destroyOld = async time => {
       },
     });
 
-    console.log(`Hits older than ${time} destroyed`);
+    console.log(`Hits older than ${time}ms destroyed`);
   } catch (error) {
     throw error;
   }

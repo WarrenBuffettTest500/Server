@@ -1,12 +1,13 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 const createError = require('http-errors');
 const express = require('express');
-const dotenv = require('dotenv');
 const app = express();
 const initLoader = require('./loaders');
 const connectSequelize = require('./config/db');
 const cookieParser = require('cookie-parser');
 
-dotenv.config();
 initLoader(app);
 connectSequelize();
 
@@ -20,6 +21,7 @@ const companyProfiles = require('./routes/companyProfiles');
 const hits = require('./routes/hits');
 
 app.use(cookieParser());
+
 app.use(PATHS.ROOT, index);
 app.use(PATHS.USERS, users);
 app.use(PATHS.STOCK_DETAILS, stockDetails);
