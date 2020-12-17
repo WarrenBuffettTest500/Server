@@ -35,10 +35,10 @@ exports.recommendationSymbolList = async (req, res, next) => {
 };
 
 exports.getAllByAttribute = async (req, res, next) => {
-  const { attribute } = req.params;
+  const { symbol } = req.params;
 
   try {
-    const data = await companyProfileService.getAll(attribute);
+    const data = await companyProfileService.getAll(symbol);
 
     if (!data) {
       res.status(200).json({

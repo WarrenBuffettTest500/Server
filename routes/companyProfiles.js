@@ -4,6 +4,6 @@ const { recommendationSymbolList, getAllByAttribute } = require('../controllers/
 const PATHS = require('../constants/paths');
 
 router.get(`${PATHS.RECOMMENDATION_STOCK_LIST}${PATHS.KEYWORD}`, recommendationSymbolList);
-router.get(PATHS.ATTRIBUTE, getAllByAttribute);
+router.get(PATHS.SYMBOL, getAllByAttribute);
 
 module.exports = router;
