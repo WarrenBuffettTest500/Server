@@ -5,10 +5,7 @@ exports.getPreferenceInfo = async (req, res, next) => {
   try {
     const preferenceInfo = await preferenceInfoService.findById(req.params.preference_info_id);
 
-    res.status(200).json({
-      result: RESPONSE.OK,
-      preferenceInfo,
-    });
+    res.status(200).json({ result: RESPONSE.OK, preferenceInfo });
   } catch (error) {
     next(error);
   }
@@ -31,10 +28,7 @@ exports.createPreferenceInfo = async (req, res, next) => {
       userUid,
     });
 
-    res.status(201).json({
-      result: RESPONSE.OK,
-      preferenceInfo: newPreferenceInfo,
-    });
+    res.status(201).json({ result: RESPONSE.OK, preferenceInfo: newPreferenceInfo });
   } catch (error) {
     next(error);
   }
@@ -56,10 +50,7 @@ exports.updatePreferenceInfo = async (req, res, next) => {
       period,
     });
 
-    res.status(200).json({
-      result: RESPONSE.OK,
-      preferenceInfo: updatedPreferenceInfo,
-    });
+    res.status(200).json({ result: RESPONSE.OK, preferenceInfo: updatedPreferenceInfo });
   } catch (error) {
     next(error);
   }

@@ -1,4 +1,4 @@
-const userService = require('../services/userService');
+const userService = require('../services/user.service');
 const portfolioItemService = require('../services/portfolioItem.service');
 
 const convertPortfolioToTable = portfolio => {
@@ -51,7 +51,7 @@ const calculateCosineSimilaritiesByPortfolio = async userUid => {
         similarity,
         items: comparingPortfolio,
       };
-    })
+    }),
   );
 
   return portfoliosWithSimilarities.sort((a, b) => b.similarity - a.similarity);

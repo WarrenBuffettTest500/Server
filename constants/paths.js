@@ -12,4 +12,5 @@ module.exports = {
   RECOMMENDATION_STOCK_LIST: '/recommendation_stock_list',
   VIEWS: '/views',
   ATTRIBUTE: '/:attribute',
+  HITS: '/hits',
 };

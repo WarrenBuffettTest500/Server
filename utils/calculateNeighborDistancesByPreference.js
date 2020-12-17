@@ -63,15 +63,13 @@ const calculateNeighborDistancesByPreference = async userUid => {
     }
 
     let distance = interestedSectorSimilarityScore[interestedSectorMatchCount.toString()] ** 2;
+
     distance += (riskAppetitePoints[basePreferenceInfo.riskAppetite] - riskAppetitePoints[preferenceInfo.riskAppetite]) ** 2;
     distance += (stockProportionPoints[basePreferenceInfo.stockProportion] - stockProportionPoints[preferenceInfo.stockProportion]) ** 2;
     distance += (preferredStockTypePoints[basePreferenceInfo.preferredStockType] - preferredStockTypePoints[preferenceInfo.preferredStockType]) ** 2;
     distance += (periodPoints[basePreferenceInfo.period] - periodPoints[preferenceInfo.period]) ** 2;
 
-    distances.push({
-      userUid: preferenceInfo.userUid,
-      distance,
-    });
+    distances.push({ userUid: preferenceInfo.userUid, distance });
   });
 
   return distances.sort((a, b) => a.distance - b.distance);

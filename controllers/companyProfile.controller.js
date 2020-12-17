@@ -8,17 +8,14 @@ exports.recommendationSymbolList = async (req, res, next) => {
     const companyProfile = await companyProfileService.findOne(keyword);
 
     if (!companyProfile) {
-      res.status(200).json({
-        result: RESPONSE.OK,
-        message: 'not found'
-      });
+      res.status(200).json({ result: RESPONSE.OK, message: RESPONSE.NOT_FOUND });
 
       return;
     }
 
     const { sector, industry, marketCap, website } = companyProfile.dataValues;
     const recommendationSymbolList
-      = await companyProfileService.findAll(keyword, sector, industry, marketCap);
+      = await companyProfileService.findAllSymbol(keyword, sector, industry, marketCap);
 
     res.status(200).json({
       result: RESPONSE.OK,
@@ -38,7 +35,7 @@ exports.getAllByAttribute = async (req, res, next) => {
   const { attribute } = req.params;
 
   try {
-    const data = await companyProfileService.getAllAttr(attribute);
+    const data = await companyProfileService.getAll(attribute);
 
     if (!data) {
       res.status(200).json({ result: RESPONSE.FAILURE });
