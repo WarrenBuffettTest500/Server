@@ -4,6 +4,7 @@ const { getCurrentUser, updateUserInfo } = require('../controllers/user.controll
 const { getPreferenceInfo, createPreferenceInfo, updatePreferenceInfo } = require('../controllers/preferenceInfo.controller');
 const { createPortfolioItem, deletePortfolioItem, updatePortfolioItem } = require('../controllers/portfolioItem.controller');
 const { getPortfolio, getPortfolioRecommendationsByPreference, getPortfolioRecommendationsByPortfolio } = require('../controllers/portfolio.controller');
+const PATHS = require('../constants/paths');
 
 router.get('/current_user', getCurrentUser);
 router.put('/:user_id', updateUserInfo);

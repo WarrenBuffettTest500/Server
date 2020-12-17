@@ -9,7 +9,9 @@ exports.getCurrentUser = async (req, res, next) => {
     const decoded = decode(token);
     const user = await userService.findByEmail(decoded.email);
 
-    res.status(200).json({ result: RESPONSE.OK, user });
+    res.status(200).json({
+      result: RESPONSE.OK, user,
+    });
   } catch (error) {
     next(error);
   }
@@ -22,7 +24,10 @@ exports.updateUserInfo = async (req, res, next) => {
   try {
     const updatedUser = await userService.updateUserPreferenceInfoId(userUid, preferenceInfoId);
 
-    res.status(200).json({ result: RESPONSE.OK, user: updatedUser });
+    res.status(200).json({
+      result: RESPONSE.OK,
+      user: updatedUser,
+    });
   } catch (error) {
     next(error);
   }

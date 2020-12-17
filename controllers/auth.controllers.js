@@ -9,14 +9,20 @@ exports.generateToken = async (req, res, next) => {
     const user = await userService.findByEmail(email);
 
     if (!user) {
-      res.status(200).json({ result: RESPONSE.FAILURE });
+      res.status(200).json({
+        result: RESPONSE.FAILURE,
+      });
 
       return;
     }
 
     const token = encode(user);
 
-    res.status(200).json({ result: RESPONSE.OK, user, token });
+    res.status(200).json({
+      result: RESPONSE.OK,
+      user,
+      token,
+    });
   } catch (error) {
     next(error);
   }
@@ -31,12 +37,20 @@ exports.registerUser = async (req, res, next) => {
     if (user) {
       const token = encode(user);
 
-      res.status(200).json({ result: RESPONSE.FAILURE, user, token });
+      res.status(200).json({
+        result: RESPONSE.FAILURE,
+        user,
+        token,
+      });
     } else {
       const user = await userService.create(userInfo);
       const token = encode(user);
 
-      res.status(201).json({ result: RESPONSE.OK, user, token });
+      res.status(201).json({
+        result: RESPONSE.OK,
+        user,
+        token,
+      });
     }
   } catch (error) {
     next(error);

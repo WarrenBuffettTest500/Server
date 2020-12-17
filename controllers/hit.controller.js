@@ -8,12 +8,11 @@ exports.createHit = async (req, res, next) => {
 
   try {
     const pastHit = await hitService.getPast(symbol, userByCookie);
-    const hasUpdatedThirtyMinutesAgo = Date.now() - pastHit.updatedAt < THIRTY_MINUTES;
 
-    if (pastHit && hasUpdatedThirtyMinutesAgo) {
+    if (pastHit && Date.now() - pastHit.updatedAt < THIRTY_MINUTES) {
       res.status(200).json({
         result: RESPONSE.OK,
-        message: RESPONSE.REQUIRED_TIME_HAS_NOT_YET_PASSED
+        message: RESPONSE.REQUIRED_TIME_HAS_NOT_YET_PASSED,
       });
 
       return;
@@ -27,7 +26,9 @@ exports.createHit = async (req, res, next) => {
 
     await hitService.create(symbol, userByCookie);
 
-    res.status(200).json({ result: RESPONSE.OK });
+    res.status(200).json({
+      result: RESPONSE.OK,
+    });
   } catch (error) {
     next(error);
   }
@@ -55,9 +56,9 @@ exports.getTrendingStocks = async (req, res, next) => {
   });
 
   const hitsSorted = Object
-  .entries(hitsTable)
-  .sort((a, b) => b[1] - a[1])
-  .slice(0, 10);
+    .entries(hitsTable)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
 
   const result = [];
 
@@ -66,7 +67,10 @@ exports.getTrendingStocks = async (req, res, next) => {
   });
 
   try {
-    res.status(200).json({ result: RESPONSE.OK, topTen: result });
+    res.status(200).json({
+      result: RESPONSE.OK,
+      topTen: result,
+    });
   } catch (error) {
     next(error);
   }

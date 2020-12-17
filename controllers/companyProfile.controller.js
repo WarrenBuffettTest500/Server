@@ -8,7 +8,10 @@ exports.recommendationSymbolList = async (req, res, next) => {
     const companyProfile = await companyProfileService.findOne(keyword);
 
     if (!companyProfile) {
-      res.status(200).json({ result: RESPONSE.OK, message: RESPONSE.NOT_FOUND });
+      res.status(200).json({
+        result: RESPONSE.OK,
+        message: RESPONSE.NOT_FOUND,
+      });
 
       return;
     }
@@ -38,12 +41,17 @@ exports.getAllByAttribute = async (req, res, next) => {
     const data = await companyProfileService.getAll(attribute);
 
     if (!data) {
-      res.status(200).json({ result: RESPONSE.FAILURE });
+      res.status(200).json({
+        result: RESPONSE.FAILURE,
+      });
 
       return;
     }
 
-    res.status(200).json({ result: RESPONSE.OK, data });
+    res.status(200).json({
+      result: RESPONSE.OK,
+      data,
+    });
   } catch (error) {
     next(error);
   }

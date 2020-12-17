@@ -8,12 +8,18 @@ exports.findStockDetails = async (req, res, next) => {
     const stockDetails = await companyProfileService.findbyKeyWord(keyword, interval);
 
     if (!stockDetails) {
-      res.status(200).json({ result: RESPONSE.FAILURE, message: RESPONSE.NOT_FOUND });
+      res.status(200).json({
+        result: RESPONSE.FAILURE,
+        message: RESPONSE.NOT_FOUND,
+      });
 
       return;
     }
 
-    res.status(200).json({ result: RESPONSE.OK, stockDetails });
+    res.status(200).json({
+      result: RESPONSE.OK,
+      stockDetails,
+    });
   } catch (error) {
     console.error(error);
   }

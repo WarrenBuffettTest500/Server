@@ -13,7 +13,10 @@ exports.createPortfolioItem = async (req, res, next) => {
       userUid,
     });
 
-    res.status(201).json({ result: RESPONSE.OK, portfolioItem: newportfolioItem });
+    res.status(201).json({
+      result: RESPONSE.OK,
+      portfolioItem: newportfolioItem,
+    });
   } catch (error) {
     next(error);
   }
@@ -24,7 +27,9 @@ exports.deletePortfolioItem = async (req, res, next) => {
   try {
     await portfolioItemService.delete(req.params.portfolio_item_id);
 
-    res.status(200).json({ result: RESPONSE.OK });
+    res.status(200).json({
+      result: RESPONSE.OK
+    });
   } catch (error) {
     next(error);
   }
@@ -35,7 +40,10 @@ exports.updatePortfolioItem = async (req, res, next) => {
     const updatedPortfolioItem
       = await portfolioItemService.update(req.params.portfolio_item_id, req.body);
 
-    res.status(200).json({ result: RESPONSE.OK, portfolioItem: updatedPortfolioItem });
+    res.status(200).json({
+      result: RESPONSE.OK,
+      portfolioItem: updatedPortfolioItem,
+    });
   } catch (error) {
     next(error);
   }
