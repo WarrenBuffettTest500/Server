@@ -76,13 +76,3 @@ exports.getAllAttr = async attribute => {
     throw error;
   }
 };
-
-exports.getAllAttr = async attribute => {
-  try {
-    return await CompanyProfile.findAll({
-      attributes: [attribute],
-    });
-  } catch (error) {
-    throw error;
-  }
-};

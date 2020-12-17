@@ -1,5 +1,5 @@
 const hitService = require('../services/hit.service');
-const { THIRTY_MINUTES } = require('../constants/numbers');
+const { THIRTY_MINUTES, ONE_MINUTE } = require('../constants/numbers');
 
 exports.createHit = async (req, res, next) => {
   const { symbol } = req.params;
@@ -35,17 +35,17 @@ exports.createHit = async (req, res, next) => {
 };
 
 exports.getTrendingStocks = async (req, res, next) => {
-  let allHits;
+  let allHitsWithInTime;
 
   try {
-    allHits = await hitService.getAll();
+    allHitsWithInTime = await hitService.getAllWithInTime(ONE_MINUTE);
   } catch (error) {
     next(error);
   }
 
   const hitsTable = {};
 
-  allHits.forEach(hit => {
+  allHitsWithInTime.forEach(hit => {
     const { symbol } = hit;
 
     if (!hitsTable.hasOwnProperty(symbol)) {
