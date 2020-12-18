@@ -58,7 +58,7 @@ exports.getTrendingStocks = async (req, res, next) => {
   const hitsSorted = Object
     .entries(hitsTable)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 10);
+    .slice(0, 15);
 
   const result = [];
 

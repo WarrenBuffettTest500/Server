@@ -69,7 +69,10 @@ const calculateNeighborDistancesByPreference = async userUid => {
     distance += (preferredStockTypePoints[basePreferenceInfo.preferredStockType] - preferredStockTypePoints[preferenceInfo.preferredStockType]) ** 2;
     distance += (periodPoints[basePreferenceInfo.period] - periodPoints[preferenceInfo.period]) ** 2;
 
-    distances.push({ userUid: preferenceInfo.userUid, distance });
+    distances.push({
+      userUid: preferenceInfo.userUid,
+      distance
+    });
   });
 
   return distances.sort((a, b) => a.distance - b.distance);

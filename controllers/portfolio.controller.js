@@ -26,17 +26,20 @@ exports.getPortfolioRecommendationsByPreference = async (req, res, next) => {
 
   try {
     const allUsersSortedByDistance = await calculateNeighborDistancesByPreference(user_id);
+    const portfolios = [];
 
-    const portfolios = await Promise.all(
-      allUsersSortedByDistance.map(async user => {
-        const portfolio = await portfolioItemService.getOne(user.userUid);
+    for (let i = 0; i < allUsersSortedByDistance.length; i++) {
+      const { userUid } = allUsersSortedByDistance[i];
 
-        return {
-          owner: user.userUid,
-          items: portfolio,
-        };
-      })
-    );
+      const portfolio = await portfolioItemService.getOne(userUid);
+
+      if (!portfolio.length) continue;
+
+      portfolios.push({
+        owner: userUid,
+        items: portfolio,
+      });
+    }
 
     res.status(200).json({
       result: RESPONSE.OK,
