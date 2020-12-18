@@ -1,7 +1,7 @@
 const { CompanyProfile } = require('../models');
-const { wrapperRequest } = require('../utils/wrapperRequest');
+const { requestWrapper } = require('../utils/wrapperRequest');
 const { Op } = require('sequelize');
-const METHOD = require('../constants/method');
+const METHODS = require('../constants/methods');
 
 exports.findbyKeyWord = async (keyWord, intervalTime) => {
   const interval = intervalTime === 'undefined' ? '1day' : intervalTime;
@@ -14,7 +14,7 @@ exports.findbyKeyWord = async (keyWord, intervalTime) => {
     if (!hasTicker) return;
 
     const options = {
-      method: METHOD.GET,
+      method: METHODS.GET,
       url: 'https://twelve-data1.p.rapidapi.com/time_series',
       qs: { symbol: keyWord, interval, outputsize: '30', format: 'json' },
       headers: {
@@ -24,7 +24,7 @@ exports.findbyKeyWord = async (keyWord, intervalTime) => {
       }
     };
 
-    return await wrapperRequest(options);;
+    return await requestWrapper(options);
   } catch (error) {
     throw error;
   }

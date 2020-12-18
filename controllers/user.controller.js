@@ -10,7 +10,8 @@ exports.getCurrentUser = async (req, res, next) => {
     const user = await userService.findByEmail(decoded.email);
 
     res.status(200).json({
-      result: RESPONSE.OK, user,
+      result: RESPONSE.OK,
+      user,
     });
   } catch (error) {
     next(error);

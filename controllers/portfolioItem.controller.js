@@ -28,7 +28,7 @@ exports.deletePortfolioItem = async (req, res, next) => {
     await portfolioItemService.delete(req.params.portfolio_item_id);
 
     res.status(200).json({
-      result: RESPONSE.OK
+      result: RESPONSE.OK,
     });
   } catch (error) {
     next(error);
