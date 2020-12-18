@@ -10,7 +10,7 @@ exports.recommendationSymbolList = async (req, res, next) => {
     if (!companyProfile) {
       res.status(200).json({
         result: RESPONSE.OK,
-        message: 'not found'
+        message: RESPONSE.NOT_FOUND,
       });
 
       return;
@@ -18,7 +18,7 @@ exports.recommendationSymbolList = async (req, res, next) => {
 
     const { sector, industry, marketCap, website } = companyProfile.dataValues;
     const recommendationSymbolList
-      = await companyProfileService.findAll(keyword, sector, industry, marketCap);
+      = await companyProfileService.findAllSymbol(keyword, sector, industry, marketCap);
 
     res.status(200).json({
       result: RESPONSE.OK,
@@ -35,18 +35,23 @@ exports.recommendationSymbolList = async (req, res, next) => {
 };
 
 exports.getAllByAttribute = async (req, res, next) => {
-  const { attribute } = req.params;
+  const { symbol } = req.params;
 
   try {
-    const data = await companyProfileService.getAllAttr(attribute);
+    const data = await companyProfileService.getAll(symbol);
 
     if (!data) {
-      res.status(200).json({ result: RESPONSE.FAILURE });
+      res.status(200).json({
+        result: RESPONSE.FAILURE,
+      });
 
       return;
     }
 
-    res.status(200).json({ result: RESPONSE.OK, data });
+    res.status(200).json({
+      result: RESPONSE.OK,
+      data,
+    });
   } catch (error) {
     next(error);
   }

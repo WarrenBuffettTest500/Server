@@ -4,19 +4,21 @@ const { getCurrentUser, updateUserInfo } = require('../controllers/user.controll
 const { getPreferenceInfo, createPreferenceInfo, updatePreferenceInfo } = require('../controllers/preferenceInfo.controller');
 const { createPortfolioItem, deletePortfolioItem, updatePortfolioItem } = require('../controllers/portfolioItem.controller');
 const { getPortfolio, getPortfolioRecommendationsByPreference, getPortfolioRecommendationsByPortfolio } = require('../controllers/portfolio.controller');
+const verifyToken = require('../middlewares/verifyToken');
+const PATHS = require('../constants/paths');
 
-router.get('/current_user', getCurrentUser);
-router.put('/:user_id', updateUserInfo);
-router.get('/:user_id/preference_infos/:preference_info_id', getPreferenceInfo);
-router.post('/:user_id/preference_infos', createPreferenceInfo);
-router.put('/:user_id/preference_infos', updatePreferenceInfo);
+router.get('/current_user', verifyToken, getCurrentUser);
+router.put('/:user_id', verifyToken, updateUserInfo);
+router.get('/:user_id/preference_infos/:preference_info_id', verifyToken, getPreferenceInfo);
+router.post('/:user_id/preference_infos', verifyToken, createPreferenceInfo);
+router.put('/:user_id/preference_infos', verifyToken, updatePreferenceInfo);
 
 router.get('/:user_id/portfolio', getPortfolio);
-router.post('/:user_id/portfolio_items', createPortfolioItem);
-router.put('/:user_id/portfolio_items/:portfolio_item_id', updatePortfolioItem);
-router.delete('/:user_id/portfolio_items/:portfolio_item_id', deletePortfolioItem);
+router.post('/:user_id/portfolio_items', verifyToken, createPortfolioItem);
+router.put('/:user_id/portfolio_items/:portfolio_item_id', verifyToken, updatePortfolioItem);
+router.delete('/:user_id/portfolio_items/:portfolio_item_id', verifyToken, deletePortfolioItem);
 
-router.get('/:user_id/portfolios/recommendations/preference', getPortfolioRecommendationsByPreference);
-router.get('/:user_id/portfolios/recommendations/portfolio', getPortfolioRecommendationsByPortfolio);
+router.get('/:user_id/portfolios/recommendations/preference', verifyToken, getPortfolioRecommendationsByPreference);
+router.get('/:user_id/portfolios/recommendations/portfolio', verifyToken, getPortfolioRecommendationsByPortfolio);
 
 module.exports = router;

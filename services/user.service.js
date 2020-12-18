@@ -3,13 +3,9 @@ const { sequelize } = require('../models');
 
 exports.findByEmail = async email => {
   try {
-    const user = await User.findOne({
+    return await User.findOne({
       where: { email }
     });
-
-    if (!user) return;
-
-    return user;
   } catch (error) {
     throw error;
   }
@@ -17,13 +13,9 @@ exports.findByEmail = async email => {
 
 exports.findByUid = async uid => {
   try {
-    const user = await User.findOne({
+    return await User.findOne({
       where: { uid }
     });
-
-    if (!user) return;
-
-    return user;
   } catch (error) {
     throw error;
   }
@@ -32,15 +24,13 @@ exports.findByUid = async uid => {
 exports.create = async userInfo => {
   const { email, uid, displayName, photoURL } = userInfo;
   try {
-    const user = await User.create({
+    return await User.create({
       uid,
       email,
       displayName,
       photoURL,
       preferenceInfo: null,
     });
-
-    return user;
   } catch (error) {
     throw error;
   }

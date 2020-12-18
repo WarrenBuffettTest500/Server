@@ -10,7 +10,7 @@ exports.findStockDetails = async (req, res, next) => {
     if (!stockDetails) {
       res.status(200).json({
         result: RESPONSE.FAILURE,
-        message: 'not found'
+        message: RESPONSE.NOT_FOUND,
       });
 
       return;
@@ -18,7 +18,7 @@ exports.findStockDetails = async (req, res, next) => {
 
     res.status(200).json({
       result: RESPONSE.OK,
-      stockDetails
+      stockDetails,
     });
   } catch (error) {
     console.error(error);

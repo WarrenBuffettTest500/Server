@@ -1,6 +1,7 @@
-const { CompanyProfile, sequelize } = require('../models');
-const { wrapperRequest } = require('../utils/wrapperRequest');
+const { CompanyProfile } = require('../models');
+const { requestWrapper } = require('../utils/wrapperRequest');
 const { Op } = require('sequelize');
+const METHODS = require('../constants/methods');
 
 exports.findbyKeyWord = async (keyWord, intervalTime) => {
   const interval = intervalTime === 'undefined' ? '1day' : intervalTime;
@@ -13,7 +14,7 @@ exports.findbyKeyWord = async (keyWord, intervalTime) => {
     if (!hasTicker) return;
 
     const options = {
-      method: 'GET',
+      method: METHODS.GET,
       url: 'https://twelve-data1.p.rapidapi.com/time_series',
       qs: { symbol: keyWord, interval, outputsize: '30', format: 'json' },
       headers: {
@@ -23,11 +24,7 @@ exports.findbyKeyWord = async (keyWord, intervalTime) => {
       }
     };
 
-    const stockDetail = await wrapperRequest(options);
-
-    if (!stockDetail) return;
-
-    return stockDetail;
+    return await requestWrapper(options);
   } catch (error) {
     throw error;
   }
@@ -44,7 +41,7 @@ exports.findOne = async keyWord => {
   }
 };
 
-exports.findAll = async (keyWord, sector, industry, marketCap) => {
+exports.findAllSymbol = async (keyWord, sector, industry, marketCap) => {
   try {
     return await CompanyProfile.findAll({
       attributes: ['symbol'],
@@ -67,7 +64,7 @@ exports.findAll = async (keyWord, sector, industry, marketCap) => {
   }
 };
 
-exports.getAllAttr = async attribute => {
+exports.getAll = async attribute => {
   try {
     return await CompanyProfile.findAll({
       attributes: [attribute],

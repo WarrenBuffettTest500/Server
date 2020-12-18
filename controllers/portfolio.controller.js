@@ -1,5 +1,5 @@
 const portfolioItemService = require('../services/portfolioItem.service');
-const userService = require('../services/userService');
+const userService = require('../services/user.service');
 const RESPONSE = require('../constants/responses');
 const calculateNeighborDistancesByPreference = require('../utils/calculateNeighborDistancesByPreference');
 const calculateCosineSimilaritiesByPortfolio = require('../utils/calculateCosineSimilaritiesByPortfolio');

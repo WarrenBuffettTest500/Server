@@ -1,5 +1,6 @@
 const hitService = require('../services/hit.service');
 const { THIRTY_MINUTES, ONE_MINUTE } = require('../constants/numbers');
+const RESPONSE = require('../constants/responses');
 
 exports.createHit = async (req, res, next) => {
   const { symbol } = req.params;
@@ -8,13 +9,10 @@ exports.createHit = async (req, res, next) => {
   try {
     const pastHit = await hitService.getPast(symbol, userByCookie);
 
-    if (
-      pastHit
-      && Date.now() - pastHit.updatedAt < THIRTY_MINUTES
-    ) {
+    if (pastHit && Date.now() - pastHit.updatedAt < THIRTY_MINUTES) {
       res.status(200).json({
-        result: 'ok',
-        message: 'required time has not yet passed',
+        result: RESPONSE.OK,
+        message: RESPONSE.REQUIRED_TIME_HAS_NOT_YET_PASSED,
       });
 
       return;
@@ -22,12 +20,14 @@ exports.createHit = async (req, res, next) => {
 
     if (pastHit) {
       await hitService.updateUpdatedAt(pastHit);
-    } else {
-      await hitService.create(symbol, userByCookie);
+
+      return;
     }
 
+    await hitService.create(symbol, userByCookie);
+
     res.status(200).json({
-      result: 'ok',
+      result: RESPONSE.OK,
     });
   } catch (error) {
     next(error);
@@ -55,7 +55,11 @@ exports.getTrendingStocks = async (req, res, next) => {
     hitsTable[symbol]++;
   });
 
-  const hitsSorted = Object.entries(hitsTable).sort((a, b) => b[1] - a[1]).slice(0, 10);
+  const hitsSorted = Object
+    .entries(hitsTable)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
+
   const result = [];
 
   hitsSorted.forEach(hitDataArray => {
@@ -64,7 +68,7 @@ exports.getTrendingStocks = async (req, res, next) => {
 
   try {
     res.status(200).json({
-      result: 'ok',
+      result: RESPONSE.OK,
       topTen: result,
     });
   } catch (error) {
