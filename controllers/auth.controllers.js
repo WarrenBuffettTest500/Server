@@ -38,9 +38,10 @@ exports.registerUser = async (req, res, next) => {
       const token = encode(user);
 
       res.status(200).json({
-        result: RESPONSE.FAILURE,
+        result: RESPONSE.OK,
         user,
         token,
+        message: RESPONSE.ALREADY_SIGNED_UP,
       });
     } else {
       const user = await userService.create(userInfo);

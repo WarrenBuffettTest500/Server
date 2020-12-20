@@ -6,7 +6,6 @@
   {"symbol": "FB", "avgPrice": "200", "quantity": "20", "userUid": "c"},
   {"symbol": "MSFT", "avgPrice": "200", "quantity": "1000", "userUid": "c"},
   {"symbol": "XRX", "avgPrice": "30", "quantity": "8", "userUid": "c"},
-  {"symbol": "PEP", "avgPrice": "100", "quantity": "700", "userUid": "c"},
   {"symbol": "NKE", "avgPrice": "100", "quantity": "8", "userUid": "c"},
   {"symbol": "AAPL", "avgPrice": "110", "quantity": "2", "userUid": "c"},
   {"symbol": "AMD", "avgPrice": "90", "quantity": "1", "userUid": "d"},

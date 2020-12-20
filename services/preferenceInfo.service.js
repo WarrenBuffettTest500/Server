@@ -19,11 +19,15 @@ exports.create = async preferenceData => {
 exports.update = async (userUid, preferenceData) => {
   try {
     await PreferenceInfo.update(preferenceData, {
-      where: { userUid },
+      where: {
+        userUid,
+      },
     });
 
     return await PreferenceInfo.findOne({
-      where: { userUid },
+      where: {
+        userUid,
+      },
     });
   } catch (error) {
     throw error;
