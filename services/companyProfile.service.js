@@ -3,9 +3,7 @@ const { requestWrapper } = require('../utils/requestWrapper');
 const { Op } = require('sequelize');
 const METHODS = require('../constants/methods');
 
-exports.findbyKeyWord = async (keyWord, intervalTime) => {
-  const interval = intervalTime === 'undefined' ? '1day' : intervalTime;
-
+exports.findbyKeyWord = async (keyWord, interval) => {
   try {
     const hasTicker = await CompanyProfile.findOne({
       where: { symbol: keyWord }

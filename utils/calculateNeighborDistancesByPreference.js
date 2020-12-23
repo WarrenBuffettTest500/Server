@@ -4,7 +4,11 @@ const calculateNeighborDistancesByPreference = async userUid => {
   const preferenceInfos = await PreferenceInfo.findAll();
   const basePreferenceInfo = preferenceInfos.find(preferenceInfo => preferenceInfo.userUid === userUid);
   const comparitiveGroup = preferenceInfos.filter(preferenceInfo => preferenceInfo.userUid !== userUid);
-  const baseInterestedSectorArray = [basePreferenceInfo.interestedSector1, basePreferenceInfo.interestedSector2, basePreferenceInfo.interestedSector3];
+  const baseInterestedSectorArray = [
+    basePreferenceInfo.interestedSector1,
+    basePreferenceInfo.interestedSector2,
+    basePreferenceInfo.interestedSector3,
+  ];
   const baseInterestedSectorTable = {};
 
   baseInterestedSectorArray.forEach(sector => {
@@ -71,7 +75,7 @@ const calculateNeighborDistancesByPreference = async userUid => {
 
     distances.push({
       userUid: preferenceInfo.userUid,
-      distance
+      distance,
     });
   });
 
