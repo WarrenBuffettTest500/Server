@@ -5,7 +5,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(path.join(__dirname, '..', 'config', 'config.js'))[env];
 const db = {};
 
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
+const sequelize = new Sequelize(config);
 
 db.User = require('./User')(sequelize, Sequelize);
 db.PreferenceInfo = require('./PreferenceInfo')(sequelize, Sequelize);
