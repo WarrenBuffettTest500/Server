@@ -6,7 +6,7 @@ exports.createPortfolioItem = async (req, res, next) => {
   const { symbol, avgPrice, quantity } = req.body;
 
   try {
-    const newportfolioItem = await portfolioItemService.create({
+    const newPortfolioItem = await portfolioItemService.create({
       symbol,
       avgPrice,
       quantity,
@@ -15,7 +15,7 @@ exports.createPortfolioItem = async (req, res, next) => {
 
     res.status(201).json({
       result: RESPONSE.OK,
-      portfolioItem: newportfolioItem,
+      portfolioItem: newPortfolioItem,
     });
   } catch (error) {
     next(error);

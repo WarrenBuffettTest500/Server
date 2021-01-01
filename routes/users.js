@@ -13,7 +13,7 @@ router.get('/:user_id/preference_infos/:preference_info_id', verifyToken, getPre
 router.post('/:user_id/preference_infos', verifyToken, createPreferenceInfo);
 router.put('/:user_id/preference_infos', verifyToken, updatePreferenceInfo);
 
-router.get('/:user_id/portfolio', getPortfolio);
+router.get('/:user_id/portfolio', verifyToken, getPortfolio);
 router.post('/:user_id/portfolio_items', verifyToken, createPortfolioItem);
 router.put('/:user_id/portfolio_items/:portfolio_item_id', verifyToken, updatePortfolioItem);
 router.delete('/:user_id/portfolio_items/:portfolio_item_id', verifyToken, deletePortfolioItem);

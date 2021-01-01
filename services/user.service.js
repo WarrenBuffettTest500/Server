@@ -4,7 +4,9 @@ const { sequelize } = require('../models');
 exports.findByEmail = async email => {
   try {
     return await User.findOne({
-      where: { email }
+      where: {
+        email,
+      },
     });
   } catch (error) {
     throw error;
@@ -14,7 +16,9 @@ exports.findByEmail = async email => {
 exports.findByUid = async uid => {
   try {
     return await User.findOne({
-      where: { uid }
+      where: {
+        uid,
+      },
     });
   } catch (error) {
     throw error;
@@ -39,13 +43,17 @@ exports.create = async userInfo => {
 exports.updateUserPreferenceInfoId = async (uid, preferenceInfoId) => {
   try {
     await User.update({
-      preferenceInfoId
+      preferenceInfoId,
     }, {
-      where: { uid },
+      where: {
+        uid,
+      },
     });
 
     return await User.findOne({
-      where: { uid },
+      where: {
+        uid,
+      },
     });
   } catch (error) {
     throw error;

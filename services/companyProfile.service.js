@@ -1,11 +1,9 @@
 const { CompanyProfile } = require('../models');
-const { requestWrapper } = require('../utils/wrapperRequest');
+const { requestWrapper } = require('../utils/requestWrapper');
 const { Op } = require('sequelize');
 const METHODS = require('../constants/methods');
 
-exports.findbyKeyWord = async (keyWord, intervalTime) => {
-  const interval = intervalTime === 'undefined' ? '1day' : intervalTime;
-
+exports.findbyKeyWord = async (keyWord, interval) => {
   try {
     const hasTicker = await CompanyProfile.findOne({
       where: { symbol: keyWord }
@@ -16,7 +14,12 @@ exports.findbyKeyWord = async (keyWord, intervalTime) => {
     const options = {
       method: METHODS.GET,
       url: 'https://twelve-data1.p.rapidapi.com/time_series',
-      qs: { symbol: keyWord, interval, outputsize: '30', format: 'json' },
+      qs: {
+        symbol: keyWord,
+        interval,
+        outputsize: '30',
+        format: 'json',
+      },
       headers: {
         'x-rapidapi-key': process.env.X_RAPIDAPI_KEY,
         'x-rapidapi-host': 'twelve-data1.p.rapidapi.com',
@@ -34,7 +37,9 @@ exports.findOne = async keyWord => {
   try {
     return await CompanyProfile.findOne({
       attributes: ['sector', 'industry', 'marketCap', 'website'],
-      where: { symbol: keyWord }
+      where: {
+        symbol: keyWord,
+      }
     });
   } catch (error) {
     throw error;
