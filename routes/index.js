@@ -5,7 +5,10 @@ const { generateToken, registerUser } = require('../controllers/auth.controllers
 const { getRandomPortfolios } = require('../controllers/portfolio.controller');
 
 router.get('/', (req, res) => {
-  res.send('deployed');
+  res.json({
+    result: 'ok',
+    message: 'deployed',
+  });
 });
 router.post(PATHS.LOGIN, generateToken);
 router.post(PATHS.SIGNUP, registerUser);
