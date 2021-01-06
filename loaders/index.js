@@ -5,10 +5,11 @@ const cron = require('node-cron');
 const shell = require('shelljs');
 
 const initLoaders = app => {
-  const origin
-    = process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : 'http://warrenbuffett-test500.site';
+  // const origin
+  //   = process.env.NODE_ENV === 'development'
+  //     ? 'http://localhost:3000'
+  //     : 'http://warrenbuffett-test500.site';
+  const origin = 'http://warrenbuffett-test500.site';
 
   app.use(cors({
     origin,
