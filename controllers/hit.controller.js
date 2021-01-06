@@ -5,10 +5,11 @@ const RESPONSE = require('../constants/responses');
 exports.createHit = async (req, res, next) => {
   const { symbol } = req.params;
   const { buffettTest500: userByCookie } = req.cookies;
-
+  console.log(symbol, userByCookie, '000000000000000');
   try {
+    console.log('111111111111111111');
     const pastHit = await hitService.getPast(symbol, userByCookie);
-
+    console.log(pastHit, '2222222222222');
     if (pastHit && Date.now() - pastHit.updatedAt < THIRTY_MINUTES) {
       res.status(200).json({
         result: RESPONSE.OK,
@@ -19,13 +20,14 @@ exports.createHit = async (req, res, next) => {
     }
 
     if (pastHit) {
+      console.log('33333333333333333');
       await hitService.updateUpdatedAt(pastHit);
-
+      console.log('44444444444444');
       return;
     }
-
+    console.log('5555555555555555555');
     await hitService.create(symbol, userByCookie);
-
+    console.log('666666666666666666666');
     res.status(200).json({
       result: RESPONSE.OK,
     });
