@@ -22,6 +22,11 @@ const hits = require('./routes/hits');
 
 app.use(cookieParser());
 
+app.use(function(req, res, next) {
+  console.log(req.path, req.params, req.body);
+  next();
+});
+
 app.use(PATHS.USERS, users);
 app.use(PATHS.STOCK_DETAILS, stockDetails);
 app.use(PATHS.COMPANY_PROFILES, companyProfiles);
