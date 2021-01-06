@@ -2,8 +2,9 @@ const { sequelize } = require('../models');
 
 const connectSequelize = async () => {
   try {
-    sequelize.sync({ force: false });
+    await sequelize.authenticate();
     console.log('database connected');
+    sequelize.sync({ force: false });
   } catch (error) {
     console.error(error);
   }
