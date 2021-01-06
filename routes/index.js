@@ -7,11 +7,5 @@ const { getRandomPortfolios } = require('../controllers/portfolio.controller');
 router.post(PATHS.LOGIN, generateToken);
 router.post(PATHS.SIGNUP, registerUser);
 router.get(`${PATHS.PORTFOLIOS}${PATHS.RANDOM}`, getRandomPortfolios);
-router.get('/', (req, res) => {
-  res.json({
-    result: 'ok',
-    message: 'deployed',
-  });
-});
 
 module.exports = router;
