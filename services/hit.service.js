@@ -52,7 +52,7 @@ exports.getAllWithInTime = async time => {
 
 exports.destroyOld = async time => {
   try {
-    Hit.destroy({
+    await Hit.destroy({
       where: {
         updatedAt: {
           [Op.lt]: Date.now() - time,
