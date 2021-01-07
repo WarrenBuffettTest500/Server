@@ -5,7 +5,6 @@ const RESPONSE = require('../constants/responses');
 exports.createHit = async (req, res, next) => {
   const { symbol } = req.params;
   const { buffettTest500: userByCookie } = req.cookies;
-
   try {
     const pastHit = await hitService.getPast(symbol, userByCookie);
 

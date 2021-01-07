@@ -5,8 +5,13 @@ const cron = require('node-cron');
 const shell = require('shelljs');
 
 const initLoaders = app => {
+  const origin
+    = process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : 'https://warrenbuffett-test500.site';
+
   app.use(cors({
-    origin: 'http://localhost:3000',
+    origin,
     credentials: true,
   }));
   app.use(logger('dev'));
@@ -14,8 +19,12 @@ const initLoaders = app => {
   app.use(express.urlencoded({ extended: false }));
 
   cron.schedule('0 0 */1 * * * *', () => {
-    console.log('scheduler running every hour..');
-    shell.exec('node utils/destroyOldHitData.js');
+    try {
+      console.log('scheduler running every hour..');
+      shell.exec('node utils/destroyOldHitData.js');
+    } catch (error) {
+      console.error(error);
+    }
   });
 };
 
